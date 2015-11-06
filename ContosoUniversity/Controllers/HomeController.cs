@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ContosoUniversity.Common;
 using ContosoUniversity.DAL;
 using ContosoUniversity.ViewModels;
 
@@ -28,7 +29,9 @@ namespace ContosoUniversity.Controllers
             //               EnrollmentDate = dateGroup.Key,
             //               StudentCount = dateGroup.Count()
             //           };
-
+#if !DEBUG 
+            this.Ups();
+#endif
             // SQL version of the above LINQ code.
             string query = "SELECT EnrollmentDate, COUNT(*) AS StudentCount "
                 + "FROM Person "

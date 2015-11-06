@@ -10,7 +10,7 @@ namespace ContosoUniversity.Common
     {
         public static void DelayCall(this object obj)
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(15000);
         }
     }
 }
