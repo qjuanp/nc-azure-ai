@@ -20,10 +20,15 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+<<<<<<< HEAD
     <ApplicationInsightsResourceId>/subscriptions/17daa959-394b-4896-bdc6-38eba58fe383/resourcegroups/training-nc/providers/microsoft.insights/components/ContosoUniversity</ApplicationInsightsResourceId>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+=======
+    <ApplicationInsightsResourceId>/subscriptions/aeb4ae60-b7cb-4f3d-966d-fa43b6607f30/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/ContosoUniversity</ApplicationInsightsResourceId>
+    <UseGlobalApplicationHostFile />
+>>>>>>> example-nc
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -216,8 +221,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+<<<<<<< HEAD
     <Content Include="ApplicationInsights.config" />
+=======
     <None Include="Properties\PublishProfiles\test1-ai-contosouniversity.pubxml" />
+>>>>>>> example-nc
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

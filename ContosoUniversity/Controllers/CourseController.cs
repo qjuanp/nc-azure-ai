@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using System.Data.Entity.Infrastructure;
+using ContosoUniversity.Common;
 
 namespace ContosoUniversity.Controllers
 {
@@ -19,6 +20,7 @@ namespace ContosoUniversity.Controllers
         // GET: Course
         public ActionResult Index(int? SelectedDepartment)
         {
+            this.Ups();
             var departments = db.Departments.OrderBy(q => q.Name).ToList();
             ViewBag.SelectedDepartment = new SelectList(departments, "DepartmentID", "Name", SelectedDepartment);
             int departmentID = SelectedDepartment.GetValueOrDefault();
@@ -28,6 +30,7 @@ namespace ContosoUniversity.Controllers
                 .OrderBy(d => d.CourseID)
                 .Include(d => d.Department);
             var sql = courses.ToString();
+            this.DelayCall();
             return View(courses.ToList());
         }
 
