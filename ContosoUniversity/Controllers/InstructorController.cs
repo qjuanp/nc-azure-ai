@@ -10,6 +10,7 @@ using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using ContosoUniversity.ViewModels;
 using System.Data.Entity.Infrastructure;
+using ContosoUniversity.Common;
 
 namespace ContosoUniversity.Controllers
 {
@@ -75,6 +76,7 @@ namespace ContosoUniversity.Controllers
             var instructor = new Instructor();
             instructor.Courses = new List<Course>();
             PopulateAssignedCourseData(instructor);
+            this.DelayCall();
             return View();
         }
 
@@ -82,6 +84,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
         {
+            this.DelayCall();
             if (selectedCourses != null)
             {
                 instructor.Courses = new List<Course>();

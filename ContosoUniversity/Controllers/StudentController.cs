@@ -10,6 +10,7 @@ using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using PagedList;
 using System.Data.Entity.Infrastructure;
+using ContosoUniversity.Common;
 
 namespace ContosoUniversity.Controllers
 {
@@ -82,6 +83,7 @@ namespace ContosoUniversity.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
+            this.Ups();
             return View();
         }
 

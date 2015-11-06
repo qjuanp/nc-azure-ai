@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using System.Data.Entity.Infrastructure;
+using ContosoUniversity.Common;
 
 namespace ContosoUniversity.Controllers
 {
@@ -28,6 +29,7 @@ namespace ContosoUniversity.Controllers
                 .OrderBy(d => d.CourseID)
                 .Include(d => d.Department);
             var sql = courses.ToString();
+            this.DelayCall();
             return View(courses.ToList());
         }
 
