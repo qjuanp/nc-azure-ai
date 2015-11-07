@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Linq;
 using ContosoUniversity.Logging;
+using Microsoft.ApplicationInsights;
 
 namespace ContosoUniversity.DAL
 {
@@ -15,6 +16,7 @@ namespace ContosoUniversity.DAL
     {
         private ILogger _logger = new Logger();
         private readonly Stopwatch _stopwatch = new Stopwatch();
+        TelemetryClient telemetry = new TelemetryClient();
 
         public override void ScalarExecuting(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
         {
@@ -31,6 +33,7 @@ namespace ContosoUniversity.DAL
             }
             else
             {
+                telemetry.TrackMetric("ScalarExecuted", _stopwatch.ElapsedMilliseconds);
                 _logger.TraceApi("SQL Database", "SchoolInterceptor.ScalarExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
             }
             base.ScalarExecuted(command, interceptionContext);
@@ -51,6 +54,7 @@ namespace ContosoUniversity.DAL
             }
             else
             {
+                telemetry.TrackMetric("NonQueryExecuted", _stopwatch.ElapsedMilliseconds);
                 _logger.TraceApi("SQL Database", "SchoolInterceptor.NonQueryExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
             }
             base.NonQueryExecuted(command, interceptionContext);
@@ -70,6 +74,7 @@ namespace ContosoUniversity.DAL
             }
             else
             {
+                telemetry.TrackMetric("ReaderExecuted", _stopwatch.ElapsedMilliseconds);
                 _logger.TraceApi("SQL Database", "SchoolInterceptor.ReaderExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
             }
             base.ReaderExecuted(command, interceptionContext);
