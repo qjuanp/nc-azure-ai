@@ -152,6 +152,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\AiHandleErrorAttribute.cs" />
     <Compile Include="Common\DelayExtension.cs" />
     <Compile Include="Common\ExceptionExtension.cs" />
     <Compile Include="Controllers\CourseController.cs" />
@@ -217,7 +218,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config" />
+    <None Include="Properties\PublishProfiles\contosouniversity-ai.pubxml" />
     <None Include="Properties\PublishProfiles\test1-ai-contosouniversity.pubxml" />
+    <None Include="Properties\PublishProfiles\training-ai.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
