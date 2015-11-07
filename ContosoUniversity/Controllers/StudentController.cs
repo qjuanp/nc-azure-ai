@@ -11,6 +11,7 @@ using ContosoUniversity.Models;
 using PagedList;
 using System.Data.Entity.Infrastructure;
 using ContosoUniversity.Common;
+using Microsoft.ApplicationInsights;
 
 namespace ContosoUniversity.Controllers
 {
@@ -84,7 +85,6 @@ namespace ContosoUniversity.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
-            this.Ups();
             return View();
         }
 
@@ -101,6 +101,8 @@ namespace ContosoUniversity.Controllers
                 {
                     db.Students.Add(student);
                     db.SaveChanges();
+                    TelemetryClient telemetry = new TelemetryClient();
+                    telemetry.TrackEvent("NewStudent");
                     return RedirectToAction("Index");
                 }
             }

@@ -11,6 +11,7 @@ using ContosoUniversity.Models;
 using ContosoUniversity.ViewModels;
 using System.Data.Entity.Infrastructure;
 using ContosoUniversity.Common;
+using Microsoft.ApplicationInsights;
 
 namespace ContosoUniversity.Controllers
 {
@@ -85,7 +86,6 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
         {
-            this.Ups();
             if (selectedCourses != null)
             {
                 instructor.Courses = new List<Course>();
@@ -99,6 +99,8 @@ namespace ContosoUniversity.Controllers
             {
                 db.Instructors.Add(instructor);
                 db.SaveChanges();
+                TelemetryClient telemetry = new TelemetryClient();
+                telemetry.TrackEvent("NewInstructor");
                 return RedirectToAction("Index");
             }
             PopulateAssignedCourseData(instructor);
