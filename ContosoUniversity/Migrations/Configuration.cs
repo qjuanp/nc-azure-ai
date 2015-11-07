@@ -41,6 +41,20 @@ namespace ContosoUniversity.Migrations
             students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
             context.SaveChanges();
 
+            for (int i = 0; i < 50; i++)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    context.Students.AddOrUpdate(new Student
+                    {
+                        FirstMidName = string.Format("Student {0}-{1}",i,j),
+                        LastName = string.Format("SLastName {0}-{1}", i, j),
+                        EnrollmentDate = DateTime.Parse("2015-11-07")
+                    });
+                }
+                context.SaveChanges();
+            }
+
             var instructors = new List<Instructor>
             {
                 new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie", 
